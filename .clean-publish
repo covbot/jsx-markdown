@@ -1,0 +1,13 @@
+{
+	"withoutPublish": true,
+	"tempDir": "prepared-package",
+	"files": [
+		"docs",
+		"src",
+		"aqu.config.json",
+		".prettierignore",
+		".gitignore",
+		"jest.config.ts",
+		"tsconfig.json"
+	]
+}

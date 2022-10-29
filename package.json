@@ -1,0 +1,20 @@
+{
+    "name": "@covbot/react-markdown",
+    "version": "0.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@babel/core": "^7.19.6",
+        "aqu": "^0.4.3",
+        "clean-publish": "^4.0.1",
+        "eslint": "^8.26.0",
+        "prettier": "^2.7.1",
+        "typescript": "^4.8.4"
+    }
+}
