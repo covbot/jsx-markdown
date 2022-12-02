@@ -1,0 +1,29 @@
+{
+	"sortFirst": [
+		"name",
+		"type",
+		"description",
+		"version",
+		"private",
+		"sideEffects",
+		"main",
+		"module",
+		"types",
+		"bugs",
+		"homepage",
+		"repository",
+		"author",
+		"license",
+		"keywords",
+		"publishConfig",
+		"exports",
+		"scripts",
+		"dependencies",
+		"devDependencies",
+		"peerDependencies",
+		"pnpm"
+	],
+	"indent": "\t",
+	"peer": false,
+	"workspace": false
+}
