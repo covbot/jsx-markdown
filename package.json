@@ -17,6 +17,10 @@
 		"jsx",
 		"markdown"
 	],
+	"publishConfig": {
+		"access": "public",
+		"directory": "prepared-package"
+	},
 	"exports": {
 		".": {
 			"import": "./dist/jsx-markdown.esm.js",
@@ -36,6 +40,8 @@
 		"format": "pnpm format:prettier && pnpm format:syncpack",
 		"format:prettier": "prettier --write **/*.{js,jsx,ts,tsx,json,yml,yaml,md}",
 		"format:syncpack": "syncpack format",
+		"postpublish": "rimraf ./prepared-package",
+		"prepublishOnly": "rimraf ./prepared-package && clean-publish",
 		"pretest": "pnpm build",
 		"test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-import-meta-resolve\" jest",
 		"test:watch": "pnpm run test --watch"
@@ -56,6 +62,7 @@
 		"jest-watch-typeahead": "^2.2.0",
 		"mdast-util-to-markdown": "^1.3.0",
 		"prettier": "^2.7.1",
+		"rimraf": "^3.0.2",
 		"syncpack": "^8.4.11",
 		"ts-jest": "^29.0.3",
 		"ts-node": "^10.9.1",
