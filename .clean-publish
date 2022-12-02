@@ -8,6 +8,10 @@
 		".prettierignore",
 		".gitignore",
 		"jest.config.ts",
-		"tsconfig.json"
+		"tsconfig.json",
+		".changeset",
+		".syncpackrc.json",
+		"coverage",
+		"tests"
 	]
 }
