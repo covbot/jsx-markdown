@@ -1,8 +1,22 @@
 {
 	"name": "@covbot/jsx-markdown",
-	"version": "0.0.0",
-	"description": "Easily generate markdown via JSX",
 	"type": "module",
+	"description": "Easily generate markdown via JSX",
+	"version": "0.0.0",
+	"bugs": "https://github.com/covbot/jsx-markdown/issues/new",
+	"homepage": "https://github.com/covbot/jsx-markdown#readme",
+	"repository": "covbot/jsx-markdown",
+	"author": {
+		"name": "Artiom Tretjakovas",
+		"email": "artiom.tretjakovas2@gmail.com"
+	},
+	"license": "MIT",
+	"keywords": [
+		"covbot",
+		"generate",
+		"jsx",
+		"markdown"
+	],
 	"exports": {
 		".": {
 			"import": "./dist/jsx-markdown.esm.js",
@@ -18,23 +32,14 @@
 		}
 	},
 	"scripts": {
+		"build": "aqu build",
+		"format": "pnpm format:prettier && pnpm format:syncpack",
+		"format:prettier": "prettier --write **/*.{js,jsx,ts,tsx,json,yml,yaml,md}",
+		"format:syncpack": "syncpack format",
 		"pretest": "pnpm build",
 		"test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-import-meta-resolve\" jest",
-		"test:watch": "pnpm run test --watch",
-		"build": "aqu build",
-		"format": "prettier --write **/*.{js,jsx,ts,tsx,json,yml,yaml,md}"
+		"test:watch": "pnpm run test --watch"
 	},
-	"keywords": [
-		"covbot",
-		"jsx",
-		"markdown",
-		"generate"
-	],
-	"author": {
-		"name": "Artiom Tretjakovas",
-		"email": "artiom.tretjakovas2@gmail.com"
-	},
-	"license": "MIT",
 	"devDependencies": {
 		"@babel/core": "^7.19.6",
 		"@babel/plugin-transform-modules-commonjs": "^7.19.6",
@@ -51,6 +56,7 @@
 		"jest-watch-typeahead": "^2.2.0",
 		"mdast-util-to-markdown": "^1.3.0",
 		"prettier": "^2.7.1",
+		"syncpack": "^8.4.11",
 		"ts-jest": "^29.0.3",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.8.4"
