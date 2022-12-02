@@ -38,6 +38,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.19.6",
 		"@babel/plugin-transform-modules-commonjs": "^7.19.6",
+		"@changesets/cli": "^2.25.2",
 		"@types/jest": "^29.2.0",
 		"@types/mdast": "^3.0.10",
 		"@types/node": "^18.11.7",
