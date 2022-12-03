@@ -43,11 +43,13 @@
 	},
 	"scripts": {
 		"build": "aqu build",
+		"bump": "changeset version && pnpm i --lockfile-only",
 		"format": "pnpm format:prettier && pnpm format:syncpack",
 		"format:prettier": "prettier --write **/*.{js,jsx,ts,tsx,json,yml,yaml,md}",
 		"format:syncpack": "syncpack format",
 		"postpublish": "rimraf ./prepared-package",
 		"prepublishOnly": "rimraf ./prepared-package && clean-publish",
+		"release": "pnpm build && changeset tag && pnpm publish -r",
 		"test": "pnpm build && cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-import-meta-resolve\" jest",
 		"test:watch": "pnpm run test --watch"
 	},
