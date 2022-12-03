@@ -48,8 +48,7 @@
 		"format:syncpack": "syncpack format",
 		"postpublish": "rimraf ./prepared-package",
 		"prepublishOnly": "rimraf ./prepared-package && clean-publish",
-		"pretest": "pnpm build",
-		"test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-import-meta-resolve\" jest",
+		"test": "pnpm build && cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-import-meta-resolve\" jest",
 		"test:watch": "pnpm run test --watch"
 	},
 	"devDependencies": {
