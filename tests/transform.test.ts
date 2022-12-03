@@ -1,22 +1,15 @@
 import { transform } from 'esbuild';
-import fs from 'node:fs/promises';
-import { URL } from 'node:url';
 
 const encodeESM = (code: string) => `data:text/javascript,${encodeURIComponent(code)}`;
 
-const jsxRuntimeUrl = new URL('../dist/jsx-runtime.esm.js', import.meta.url);
-const jsxRuntime = await fs.readFile(jsxRuntimeUrl);
-
 const evalJsx = async (source: string) => {
 	const { code: transformedSource } = await transform(source, {
-		jsxImportSource: '#root',
+		jsxImportSource: '@covbot/jsx-markdown',
 		jsx: 'automatic',
 		loader: 'jsx',
 	});
 
-	const inlinedDependencies = transformedSource.replace('#root/jsx-runtime', encodeESM(jsxRuntime.toString()));
-
-	const module = await import(encodeESM(inlinedDependencies));
+	const module = await import(encodeESM(transformedSource));
 
 	return module.default;
 };
