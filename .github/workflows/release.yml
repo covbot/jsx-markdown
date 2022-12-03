@@ -39,7 +39,7 @@ jobs:
             - name: Create Release Pull Request or Publish to npm
               uses: changesets/action@v1
               with:
-                  version: changeset version && pnpm i --lockfile-only
-                  publish: pnpm build && changeset tag && pnpm publish -r
+                  version: pnpm changeset version && pnpm i --lockfile-only
+                  publish: pnpm build && pnpm changeset tag && pnpm publish -r
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
