@@ -24,15 +24,21 @@
 	"exports": {
 		".": {
 			"import": "./dist/jsx-markdown.esm.js",
-			"require": "./dist/jsx-markdown.cjs.development.js"
+			"require": "./dist/jsx-markdown.cjs.development.js",
+			"types": "./dist/jsx-markdown.d.ts"
 		},
 		"./jsx-runtime": {
 			"import": "./dist/jsx-runtime.esm.js",
-			"require": "./dist/jsx-runtime.cjs.development.js"
+			"require": "./dist/jsx-runtime.cjs.development.js",
+			"types": "./dist/jsx-runtime.d.ts"
 		},
 		"./jsx-dev-runtime": {
 			"import": "./dist/jsx-dev-runtime.esm.js",
-			"require": "./dist/jsx-dev-runtime.cjs.development.js"
+			"require": "./dist/jsx-dev-runtime.cjs.development.js",
+			"types": "./dist/jsx-dev-runtime.d.ts"
+		},
+		"./jsx-types": {
+			"types": "./dist/jsx-types.d.ts"
 		}
 	},
 	"scripts": {
