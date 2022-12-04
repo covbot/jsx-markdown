@@ -31,9 +31,6 @@
 			"import": "./dist/jsx-runtime.esm.js",
 			"require": "./dist/jsx-runtime.cjs.development.js",
 			"types": "./dist/jsx-runtime.d.ts"
-		},
-		"./jsx-types": {
-			"types": "./dist/jsx-types.d.ts"
 		}
 	},
 	"scripts": {

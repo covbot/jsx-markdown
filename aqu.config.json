@@ -7,10 +7,5 @@
 		"name": "jsx-runtime",
 		"input": "./src/jsx-runtime.ts",
 		"cjsMode": "development"
-	},
-	{
-		"name": "jsx-types",
-		"input": "./src/types.ts",
-		"format": "iife"
 	}
 ]
