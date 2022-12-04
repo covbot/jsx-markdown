@@ -1,6 +1,10 @@
 import { Content, Root } from 'mdast';
 import { MarkdownIntrinsicElements } from './MarkdownIntrinsicElements';
 
+export declare namespace JSX {
+	interface IntrinsicElements extends MarkdownIntrinsicElements {}
+}
+
 type NodeType = keyof MarkdownIntrinsicElements;
 
 const elementToType: Record<NodeType, Content['type'] | Root['type']> = {
