@@ -4,11 +4,6 @@
 		"cjsMode": "development"
 	},
 	{
-		"name": "jsx-dev-runtime",
-		"input": "./src/jsx-dev-runtime.ts",
-		"cjsMode": "development"
-	},
-	{
 		"name": "jsx-runtime",
 		"input": "./src/jsx-runtime.ts",
 		"cjsMode": "development"
