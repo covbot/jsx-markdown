@@ -2,17 +2,17 @@
 	"compilerOptions": {
 		"target": "ES2020",
 		"module": "Node16",
-		"jsx": "preserve",
+		"jsx": "react-jsx",
+		"jsxImportSource": "@covbot/jsx-markdown",
 		"declaration": true,
 		"strict": true,
 		"esModuleInterop": true,
 		"lib": ["es5"],
 		"noLib": false,
-		"rootDir": "src",
 		"skipLibCheck": false,
 		"allowSyntheticDefaultImports": true,
-		"moduleResolution": "node"
+		"moduleResolution": "NodeNext"
 	},
-	"include": ["src", "test"],
+	"include": ["src", "tests"],
 	"exclude": ["node_modules", "example"]
 }
