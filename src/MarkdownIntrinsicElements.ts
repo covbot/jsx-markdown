@@ -1,20 +1,51 @@
-import {
-	Blockquote as MarkdownBlockquote,
-	Heading as MarkdownHeading,
-	Paragraph as MarkdownParagraph,
-	Root as MarkdownRoot,
-	ThematicBreak as MarkdownThematicBreak,
-} from 'mdast';
+import { Root, Paragraph, ThematicBreak, Blockquote, Heading, List } from 'mdast';
 
-export type MarkdownIntrinsicElements = {
-	root: Omit<MarkdownRoot, 'type'>;
-	p: Omit<MarkdownParagraph, 'type'>;
-	hr: Omit<MarkdownThematicBreak, 'type'>;
-	blockquote: Omit<MarkdownBlockquote, 'type'>;
-} & HeadingElements;
+type JSXAttributes<TAttributes> = Omit<TAttributes, 'type' | 'children' | 'position'>;
 
-export type HeadingDepths = MarkdownHeading['depth'];
+export interface MarkdownRootAttributes extends JSXAttributes<Root> {}
+export interface MarkdownParagraphAttributes extends JSXAttributes<Paragraph> {}
+export interface MarkdownThematicBreakAttributes extends JSXAttributes<ThematicBreak> {}
+export interface MarkdownBlockquoteAttributes extends JSXAttributes<Blockquote> {}
+export interface MarkdownHeadingAttributes extends JSXAttributes<Omit<Heading, 'depth'>> {}
+export interface MarkdownListAttributes extends JSXAttributes<Omit<List, 'ordered'>> {}
 
-export type HeadingTypes = `h${HeadingDepths}`;
+export interface MarkdownIntrinsicElements {
+	root: MarkdownRootAttributes;
+	p: MarkdownParagraphAttributes;
+	hr: MarkdownThematicBreakAttributes;
+	blockquote: MarkdownBlockquoteAttributes;
+	h1: MarkdownHeadingAttributes;
+	h2: MarkdownHeadingAttributes;
+	h3: MarkdownHeadingAttributes;
+	h4: MarkdownHeadingAttributes;
+	h5: MarkdownHeadingAttributes;
+	h6: MarkdownHeadingAttributes;
+	ul: MarkdownListAttributes;
+	ol: MarkdownListAttributes;
+}
 
-export type HeadingElements = Record<HeadingTypes, Omit<MarkdownHeading, 'depth' | 'type'>>;
+export type MarkdownElementType = keyof MarkdownIntrinsicElements;
+
+export type JSXElementConstructor<TProps extends Record<string, unknown> = Record<string, unknown>> = (
+	props: TProps,
+) => MarkdownElement<any, any> | null;
+
+export type MarkdownElement<
+	TProps = any,
+	TType extends MarkdownElementType | JSXElementConstructor = MarkdownElementType | JSXElementConstructor,
+> = {
+	props: TProps;
+	type: TType;
+};
+
+export type MarkdownNode = string | number | null | undefined | false | MarkdownElement | MarkdownElement[];
+
+export type PropsWithChildren<TProps> = TProps & {
+	children?: MarkdownNode;
+};
+
+export type MarkdownAttributes<T extends MarkdownElementType | JSXElementConstructor> = T extends MarkdownElementType
+	? PropsWithChildren<MarkdownIntrinsicElements[MarkdownElementType]>
+	: T extends JSXElementConstructor<infer TProps>
+	? TProps
+	: never;
