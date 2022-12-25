@@ -4,3 +4,4 @@ dist
 *.config.ts
 *.test.js
 __mocks__
+coverage

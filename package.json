@@ -44,7 +44,8 @@
 		"prepublishOnly": "rimraf ./prepared-package && clean-publish",
 		"release": "pnpm build && changeset tag && pnpm publish",
 		"test": "pnpm build && cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-import-meta-resolve\" jest",
-		"test:watch": "pnpm run test --watch"
+		"test:watch": "pnpm run test --watch",
+		"lint": "eslint ."
 	},
 	"devDependencies": {
 		"@babel/core": "^7.19.6",
