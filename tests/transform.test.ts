@@ -151,4 +151,16 @@ describe('transform', () => {
 			],
 		});
 	});
+
+	it('should work with fragments', async () => {
+		expect(await evalJsx('6.tsx')).toStrictEqual({
+			type: 'root',
+			children: [
+				{
+					type: 'text',
+					value: 'Some text',
+				},
+			],
+		});
+	});
 });
