@@ -2,7 +2,17 @@
 /* eslint-disable unicorn/no-useless-switch-case */
 import { MarkdownElement } from './MarkdownIntrinsicElements';
 
-const isValidNode = (value: unknown): value is MarkdownElement => true;
+const isValidNode = (value: unknown): value is MarkdownElement => {
+	if (typeof value !== 'object' || value === null) {
+		return false;
+	}
+
+	if (!('type' in value)) {
+		return false;
+	}
+
+	return true;
+};
 
 export const getChildren = (properties: Record<string, unknown>): MarkdownElement[] => {
 	const children: MarkdownElement[] = [];
