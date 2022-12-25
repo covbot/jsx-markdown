@@ -9,6 +9,5 @@
 		"skipLibCheck": false,
 		"allowSyntheticDefaultImports": true,
 		"composite": true
-	},
-	"include": ["*.ts"]
+	}
 }
