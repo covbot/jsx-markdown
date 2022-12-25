@@ -3,5 +3,4 @@ dist
 *.config.js
 *.config.ts
 *.test.js
-*.test.ts
 __mocks__

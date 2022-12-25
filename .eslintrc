@@ -2,6 +2,8 @@
     "root": true,
     "extends": ["@sirse-dev/eslint-config"],
     "rules": {
-        "unicorn/prefer-node-protocol": "off"
+        "unicorn/prefer-node-protocol": "off",
+        "react/jsx-key": "off",
+        "unicorn/no-null": "off"
     }
 }

@@ -1,6 +1,18 @@
-import { Root, Paragraph, ThematicBreak, Blockquote, Heading, List } from 'mdast';
+import { Root, Paragraph, ThematicBreak, Blockquote, Heading, List, Content } from 'mdast';
 
-type JSXAttributes<TAttributes> = Omit<TAttributes, 'type' | 'children' | 'position'>;
+export type MarkdownElement = Content | Root;
+
+export type MarkdownNode = MarkdownElement | string | boolean | number | undefined | null;
+
+export type PropertiesWithChildren<TProperties> = TProperties & {
+	children?: MarkdownNode | MarkdownNode[];
+};
+
+type OmittedKeys = 'type' | 'children' | 'position';
+
+type JSXAttributes<TAttributes> = TAttributes extends Record<'children', unknown>
+	? PropertiesWithChildren<Omit<TAttributes, OmittedKeys>>
+	: Omit<TAttributes, OmittedKeys>;
 
 export interface MarkdownRootAttributes extends JSXAttributes<Root> {}
 export interface MarkdownParagraphAttributes extends JSXAttributes<Paragraph> {}
@@ -26,26 +38,12 @@ export interface MarkdownIntrinsicElements {
 
 export type MarkdownElementType = keyof MarkdownIntrinsicElements;
 
-export type JSXElementConstructor<TProps extends Record<string, unknown> = Record<string, unknown>> = (
-	props: TProps,
-) => MarkdownElement<any, any> | null;
-
-export type MarkdownElement<
-	TProps = any,
-	TType extends MarkdownElementType | JSXElementConstructor = MarkdownElementType | JSXElementConstructor,
-> = {
-	props: TProps;
-	type: TType;
-};
-
-export type MarkdownNode = string | number | null | undefined | false | MarkdownElement | MarkdownElement[];
-
-export type PropsWithChildren<TProps> = TProps & {
-	children?: MarkdownNode;
-};
+export type JSXElementConstructor<TProperties extends Record<string, unknown> = Record<string, unknown>> = (
+	properties: TProperties,
+) => MarkdownElement | null;
 
 export type MarkdownAttributes<T extends MarkdownElementType | JSXElementConstructor> = T extends MarkdownElementType
-	? PropsWithChildren<MarkdownIntrinsicElements[MarkdownElementType]>
-	: T extends JSXElementConstructor<infer TProps>
-	? TProps
+	? MarkdownIntrinsicElements[MarkdownElementType]
+	: T extends JSXElementConstructor<infer TProperties>
+	? TProperties
 	: never;

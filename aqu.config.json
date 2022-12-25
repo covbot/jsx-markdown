@@ -5,7 +5,7 @@
 	},
 	{
 		"name": "jsx-runtime",
-		"input": "./src/jsx-runtime.ts",
+		"input": "./src/jsxRuntime.ts",
 		"cjsMode": "development"
 	}
 ]
