@@ -40,6 +40,10 @@ const createList = (ordered?: boolean) => {
 	});
 };
 
+const createFragmentElement = () => {
+	return ({ children }: NormalizedAttributes<{}>) => children as unknown as MarkdownElement;
+};
+
 type ElementTableType = {
 	[TKey in MarkdownElementType]: (properties: NormalizedAttributes<MarkdownAttributes<TKey>>) => MarkdownElement;
 };
@@ -60,6 +64,12 @@ const elementTable: ElementTableType = {
 	h6: createHeading(6),
 	ol: createList(true),
 	ul: createList(false),
+	table: createSampleElement('table'),
+	tbody: createFragmentElement(),
+	thead: createFragmentElement(),
+	tr: createSampleElement('tableRow'),
+	td: createSampleElement('tableCell'),
+	th: createSampleElement('tableCell'),
 };
 
 export const jsxIntoMd = <T extends MarkdownElementType>(

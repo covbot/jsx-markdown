@@ -163,4 +163,63 @@ describe('transform', () => {
 			],
 		});
 	});
+
+	it('should render tables', async () => {
+		expect(await evalJsx('7.tsx')).toStrictEqual({
+			type: 'root',
+			children: [
+				{
+					type: 'table',
+					children: [
+						{
+							type: 'tableRow',
+							children: [
+								{
+									type: 'tableCell',
+									children: [
+										{
+											type: 'text',
+											value: 'Hello',
+										},
+									],
+								},
+								{
+									type: 'tableCell',
+									children: [
+										{
+											type: 'text',
+											value: 'World',
+										},
+									],
+								},
+							],
+						},
+						{
+							type: 'tableRow',
+							children: [
+								{
+									type: 'tableCell',
+									children: [
+										{
+											type: 'text',
+											value: '123',
+										},
+									],
+								},
+								{
+									type: 'tableCell',
+									children: [
+										{
+											type: 'text',
+											value: '321',
+										},
+									],
+								},
+							],
+						},
+					],
+				},
+			],
+		});
+	});
 });
