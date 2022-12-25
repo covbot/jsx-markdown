@@ -8,6 +8,7 @@ import {
 } from './MarkdownIntrinsicElements';
 
 export * from './jsxTypes';
+export * from './Fragment';
 
 export function jsx<T extends MarkdownElementType | JSXElementConstructor>(
 	type: T,
