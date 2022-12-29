@@ -2,7 +2,7 @@
 	"name": "@covbot/jsx-markdown",
 	"type": "module",
 	"description": "Easily generate markdown via JSX",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"bugs": "https://github.com/covbot/jsx-markdown/issues/new",
 	"homepage": "https://github.com/covbot/jsx-markdown#readme",
 	"repository": "covbot/jsx-markdown",

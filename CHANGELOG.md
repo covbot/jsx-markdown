@@ -1,5 +1,11 @@
 # @covbot/jsx-markdown
 
+## 0.2.0
+
+### Minor Changes
+
+-   9fb51f3: Fixed issues with code & inlineCode elements
+
 ## 0.1.1
 
 ### Patch Changes
