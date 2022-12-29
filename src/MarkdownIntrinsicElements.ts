@@ -13,6 +13,8 @@ import {
 	InlineCode,
 	Literal,
 	Parent,
+	Link,
+	Resource,
 } from 'mdast';
 
 export type MarkdownElement = Content | Root;
@@ -33,6 +35,10 @@ type JSXLiteralAttributes<TAttributes extends Literal> = Omit<TAttributes, Ignor
 	children: TAttributes['value'] | TAttributes['value'][];
 };
 
+type JSXLinkAttributes<TAttributes extends Resource> = JSXAttributes<Omit<TAttributes, 'url'>> & {
+	href: TAttributes['url'];
+};
+
 export interface MarkdownRootAttributes extends JSXAttributes<Root> {}
 export interface MarkdownParagraphAttributes extends JSXAttributes<Paragraph> {}
 export interface MarkdownThematicBreakAttributes extends JSXAttributes<ThematicBreak> {}
@@ -46,6 +52,7 @@ export interface MarkdownTableRowAttributes extends JSXAttributes<TableRow> {}
 export interface MarkdownTableCellAttributes extends JSXAttributes<TableCell> {}
 export interface MarkdownCodeAttributes extends JSXLiteralAttributes<Code> {}
 export interface MarkdownInlineCodeAttributes extends JSXLiteralAttributes<InlineCode> {}
+export interface MarkdownLinkAttributes extends JSXLinkAttributes<Link> {}
 
 export interface MarkdownIntrinsicElements {
 	root: MarkdownRootAttributes;
@@ -68,6 +75,7 @@ export interface MarkdownIntrinsicElements {
 	td: MarkdownTableCellAttributes;
 	pre: MarkdownCodeAttributes;
 	code: MarkdownInlineCodeAttributes;
+	a: MarkdownLinkAttributes;
 }
 
 export type MarkdownElementType = keyof MarkdownIntrinsicElements;
@@ -77,7 +85,7 @@ export type JSXElementConstructor<TProperties extends Record<string, unknown> = 
 ) => MarkdownElement | null;
 
 export type MarkdownAttributes<T extends MarkdownElementType | JSXElementConstructor> = T extends MarkdownElementType
-	? MarkdownIntrinsicElements[MarkdownElementType]
+	? MarkdownIntrinsicElements[T]
 	: T extends JSXElementConstructor<infer TProperties>
 	? TProperties
 	: never;

@@ -1,4 +1,4 @@
-import { Content, Heading, List, ListItem, PhrasingContent, Text } from 'mdast';
+import { Content, Heading, Link, List, ListItem, PhrasingContent, Text } from 'mdast';
 import {
 	MarkdownAttributes,
 	MarkdownElement,
@@ -86,6 +86,12 @@ const elementTable: ElementTableType = {
 	th: createSampleElement('tableCell'),
 	pre: createLiteralElement('code'),
 	code: createLiteralElement('inlineCode'),
+	a: ({ href, ...other }: NormalizedAttributes<MarkdownAttributes<'a'>>) =>
+		({
+			type: 'link',
+			url: href,
+			...other,
+		} as Link),
 };
 
 export const jsxIntoMd = <T extends MarkdownElementType>(
