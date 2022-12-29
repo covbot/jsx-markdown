@@ -1,5 +1,12 @@
 # @covbot/jsx-markdown
 
+## 0.1.1
+
+### Patch Changes
+
+-   32cace6: Added pre (code) and code (inlineCode) elements
+-   b644f33: Added table support
+
 ## 0.1.0
 
 ### Minor Changes
