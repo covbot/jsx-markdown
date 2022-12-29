@@ -1,5 +1,11 @@
 # @covbot/jsx-markdown
 
+## 0.3.0
+
+### Minor Changes
+
+-   a9839a7: Created link (a) element
+
 ## 0.2.0
 
 ### Minor Changes
