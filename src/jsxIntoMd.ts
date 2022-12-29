@@ -1,4 +1,4 @@
-import { Content, Heading, List, ListItem, PhrasingContent } from 'mdast';
+import { Content, Heading, List, ListItem, PhrasingContent, Text } from 'mdast';
 import {
 	MarkdownAttributes,
 	MarkdownElement,
@@ -17,6 +17,20 @@ const createSampleElement = <T extends ExtractMarkdownElementType<MarkdownElemen
 		return {
 			type,
 			children,
+			...other,
+		} as MarkdownElement;
+	};
+};
+
+const createLiteralElement = <T extends ExtractMarkdownElementType<MarkdownElement>>(type: T) => {
+	return ({ children, ...other }: { children: MarkdownElement[] }) => {
+		if (!children.every((value): value is Text => value.type === 'text')) {
+			throw new Error(`Descendants of ${type} must be of type "text"`);
+		}
+
+		return {
+			type,
+			value: children.map(({ value }) => value).join(''),
 			...other,
 		} as MarkdownElement;
 	};
@@ -70,8 +84,8 @@ const elementTable: ElementTableType = {
 	tr: createSampleElement('tableRow'),
 	td: createSampleElement('tableCell'),
 	th: createSampleElement('tableCell'),
-	pre: createSampleElement('code'),
-	code: createSampleElement('inlineCode'),
+	pre: createLiteralElement('code'),
+	code: createLiteralElement('inlineCode'),
 };
 
 export const jsxIntoMd = <T extends MarkdownElementType>(
