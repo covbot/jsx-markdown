@@ -1,4 +1,17 @@
-import { Root, Paragraph, ThematicBreak, Blockquote, Heading, List, Content, Table, TableRow, TableCell } from 'mdast';
+import {
+	Root,
+	Paragraph,
+	ThematicBreak,
+	Blockquote,
+	Heading,
+	List,
+	Content,
+	Table,
+	TableRow,
+	TableCell,
+	Code,
+	InlineCode,
+} from 'mdast';
 
 export type MarkdownElement = Content | Root;
 
@@ -25,6 +38,8 @@ export interface MarkdownTableBodyAttributes extends JSXAttributes<{}> {}
 export interface MarkdownTableHeadAttributes extends JSXAttributes<{}> {}
 export interface MarkdownTableRowAttributes extends JSXAttributes<TableRow> {}
 export interface MarkdownTableCellAttributes extends JSXAttributes<TableCell> {}
+export interface MarkdownCodeAttributes extends JSXAttributes<Code> {}
+export interface MarkdownInlineCodeAttributes extends JSXAttributes<InlineCode> {}
 
 export interface MarkdownIntrinsicElements {
 	root: MarkdownRootAttributes;
@@ -45,6 +60,8 @@ export interface MarkdownIntrinsicElements {
 	tr: MarkdownTableRowAttributes;
 	th: MarkdownTableCellAttributes;
 	td: MarkdownTableCellAttributes;
+	pre: MarkdownCodeAttributes;
+	code: MarkdownInlineCodeAttributes;
 }
 
 export type MarkdownElementType = keyof MarkdownIntrinsicElements;
