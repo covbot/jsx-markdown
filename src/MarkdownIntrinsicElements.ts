@@ -11,6 +11,8 @@ import {
 	TableCell,
 	Code,
 	InlineCode,
+	Literal,
+	Parent,
 } from 'mdast';
 
 export type MarkdownElement = Content | Root;
@@ -21,11 +23,15 @@ export type PropertiesWithChildren<TProperties> = TProperties & {
 	children?: MarkdownNode | MarkdownNode[];
 };
 
-type OmittedKeys = 'type' | 'children' | 'position';
+type IgnoredMdKeys = 'type' | 'children' | 'position';
 
-type JSXAttributes<TAttributes> = TAttributes extends Record<'children', unknown>
-	? PropertiesWithChildren<Omit<TAttributes, OmittedKeys>>
-	: Omit<TAttributes, OmittedKeys>;
+type JSXAttributes<TAttributes> = TAttributes extends Parent
+	? PropertiesWithChildren<Omit<TAttributes, IgnoredMdKeys>>
+	: Omit<TAttributes, IgnoredMdKeys>;
+
+type JSXLiteralAttributes<TAttributes extends Literal> = Omit<TAttributes, IgnoredMdKeys | 'value'> & {
+	children: TAttributes['value'] | TAttributes['value'][];
+};
 
 export interface MarkdownRootAttributes extends JSXAttributes<Root> {}
 export interface MarkdownParagraphAttributes extends JSXAttributes<Paragraph> {}
@@ -38,8 +44,8 @@ export interface MarkdownTableBodyAttributes extends JSXAttributes<{}> {}
 export interface MarkdownTableHeadAttributes extends JSXAttributes<{}> {}
 export interface MarkdownTableRowAttributes extends JSXAttributes<TableRow> {}
 export interface MarkdownTableCellAttributes extends JSXAttributes<TableCell> {}
-export interface MarkdownCodeAttributes extends JSXAttributes<Code> {}
-export interface MarkdownInlineCodeAttributes extends JSXAttributes<InlineCode> {}
+export interface MarkdownCodeAttributes extends JSXLiteralAttributes<Code> {}
+export interface MarkdownInlineCodeAttributes extends JSXLiteralAttributes<InlineCode> {}
 
 export interface MarkdownIntrinsicElements {
 	root: MarkdownRootAttributes;

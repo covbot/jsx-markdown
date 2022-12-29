@@ -222,4 +222,26 @@ describe('transform', () => {
 			],
 		});
 	});
+
+	it('should render code', async () => {
+		expect(await evalJsx('8.tsx')).toStrictEqual({
+			type: 'code',
+			lang: 'js',
+			value: 'const hello = 1 + 2; const bye = [1,2,3,4,5];',
+		});
+	});
+
+	it('should render multiple code fragments', async () => {
+		expect(await evalJsx('9.tsx')).toStrictEqual({
+			type: 'code',
+			value: "const hello = 10;hello world\n    that's multiline stuffbye",
+		});
+	});
+
+	it('should render inlineCode', async () => {
+		expect(await evalJsx('10.tsx')).toStrictEqual({
+			type: 'inlineCode',
+			value: 'hello',
+		});
+	});
 });
