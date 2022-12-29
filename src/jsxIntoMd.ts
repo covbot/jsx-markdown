@@ -70,6 +70,8 @@ const elementTable: ElementTableType = {
 	tr: createSampleElement('tableRow'),
 	td: createSampleElement('tableCell'),
 	th: createSampleElement('tableCell'),
+	pre: createSampleElement('code'),
+	code: createSampleElement('inlineCode'),
 };
 
 export const jsxIntoMd = <T extends MarkdownElementType>(
