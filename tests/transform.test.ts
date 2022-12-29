@@ -244,4 +244,17 @@ describe('transform', () => {
 			value: 'hello',
 		});
 	});
+
+	it('should render link', async () => {
+		expect(await evalJsx('11.tsx')).toStrictEqual({
+			type: 'link',
+			url: 'hello-world',
+			children: [
+				{
+					type: 'text',
+					value: 'aaaa',
+				},
+			],
+		});
+	});
 });
