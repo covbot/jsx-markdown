@@ -1,5 +1,11 @@
 # @covbot/jsx-markdown
 
+## 0.4.0
+
+### Minor Changes
+
+-   fcbc546: Added possibility to embed html elements
+
 ## 0.3.0
 
 ### Minor Changes
