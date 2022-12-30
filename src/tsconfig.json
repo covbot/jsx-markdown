@@ -8,6 +8,7 @@
 		"noLib": false,
 		"skipLibCheck": false,
 		"allowSyntheticDefaultImports": true,
-		"composite": true
+		"composite": true,
+		"moduleResolution": "node"
 	}
 }

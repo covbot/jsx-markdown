@@ -53,6 +53,8 @@ export interface MarkdownTableCellAttributes extends JSXAttributes<TableCell> {}
 export interface MarkdownCodeAttributes extends JSXLiteralAttributes<Code> {}
 export interface MarkdownInlineCodeAttributes extends JSXLiteralAttributes<InlineCode> {}
 export interface MarkdownLinkAttributes extends JSXLinkAttributes<Link> {}
+export interface HTMLDetailsAttributes extends PropertiesWithChildren<{}> {}
+export interface HTMLSummaryAttributes extends PropertiesWithChildren<{}> {}
 
 export interface MarkdownIntrinsicElements {
 	root: MarkdownRootAttributes;
@@ -76,6 +78,8 @@ export interface MarkdownIntrinsicElements {
 	pre: MarkdownCodeAttributes;
 	code: MarkdownInlineCodeAttributes;
 	a: MarkdownLinkAttributes;
+	details: HTMLDetailsAttributes;
+	summary: HTMLSummaryAttributes;
 }
 
 export type MarkdownElementType = keyof MarkdownIntrinsicElements;

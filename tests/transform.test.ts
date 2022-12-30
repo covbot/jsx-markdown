@@ -257,4 +257,11 @@ describe('transform', () => {
 			],
 		});
 	});
+
+	it('should render raw html elements', async () => {
+		expect(await evalJsx('12.tsx')).toStrictEqual({
+			type: 'html',
+			value: '<details><summary>hello</summary>\nhello world\n<p>a</p></details>',
+		});
+	});
 });
