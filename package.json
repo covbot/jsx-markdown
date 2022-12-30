@@ -52,6 +52,7 @@
 		"@babel/plugin-transform-modules-commonjs": "^7.19.6",
 		"@changesets/cli": "^2.25.2",
 		"@sirse-dev/eslint-config": "^1.0.12",
+		"@types/hast": "^2.3.4",
 		"@types/jest": "^29.2.0",
 		"@types/mdast": "^3.0.10",
 		"@types/node": "^18.11.7",
@@ -70,5 +71,9 @@
 		"ts-jest": "^29.0.3",
 		"ts-node": "^10.9.1",
 		"typescript": "^4.9.3"
+	},
+	"dependencies": {
+		"hast-util-to-html": "^8.0.3",
+		"mdast-util-to-hast": "^12.2.4"
 	}
 }

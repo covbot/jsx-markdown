@@ -1,4 +1,7 @@
+import { Element as HastElement } from 'hast';
+import { toHtml } from 'hast-util-to-html';
 import { Content, Heading, Link, List, ListItem, PhrasingContent, Text } from 'mdast';
+import { toHast } from 'mdast-util-to-hast';
 import {
 	MarkdownAttributes,
 	MarkdownElement,
@@ -17,6 +20,36 @@ const createSampleElement = <T extends ExtractMarkdownElementType<MarkdownElemen
 		return {
 			type,
 			children,
+			...other,
+		} as MarkdownElement;
+	};
+};
+
+const createHtmlElement = (tagName: string) => {
+	return ({ children, ...other }: { children: MarkdownElement[] }) => {
+		const childrenAsHast = toHast(
+			{
+				type: 'root',
+				children: children as Content[],
+			},
+			{ allowDangerousHtml: true },
+		);
+
+		if (!childrenAsHast) {
+			throw new Error('Cannot convert markdown children into html.');
+		}
+
+		const wrappedIntoElement: HastElement = {
+			children: (childrenAsHast as HastElement).children,
+			type: 'element',
+			tagName,
+		};
+
+		const elementsAsHtml = toHtml(wrappedIntoElement, { allowDangerousHtml: true });
+
+		return {
+			type: 'html',
+			value: elementsAsHtml,
 			...other,
 		} as MarkdownElement;
 	};
@@ -92,6 +125,8 @@ const elementTable: ElementTableType = {
 			url: href,
 			...other,
 		} as Link),
+	details: createHtmlElement('details'),
+	summary: createHtmlElement('summary'),
 };
 
 export const jsxIntoMd = <T extends MarkdownElementType>(
